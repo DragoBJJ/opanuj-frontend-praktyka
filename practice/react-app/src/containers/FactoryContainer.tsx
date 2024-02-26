@@ -1,4 +1,4 @@
-import { CountryType } from '../types/country';
+import { CountryType } from '../types/Country';
 
 import { CountriesSearchContainer } from './CountriesSearchContainer';
 import { CountriesList } from '../components/molecules/CountriesList';
@@ -13,6 +13,7 @@ export const FactoryContainer = () => {
     case 'SEARCH':
       return (
         <CountriesSearchContainer
+          title="Countries Search"
           viewFn={(countries: CountryType[]) => (
             <CountriesList countries={countries} />
           )}
@@ -22,7 +23,7 @@ export const FactoryContainer = () => {
       return (
         <CountriesGuessContainer
           viewFn={({ flagsData }: CountryType) => (
-            <Country name="" flagData={flagsData} />
+            <Country flagData={flagsData} />
           )}
         />
       );

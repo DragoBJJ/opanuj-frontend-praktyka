@@ -1,4 +1,4 @@
-import { CountryType } from '../types/country';
+import { CountryType } from '../types/Country';
 import { memo } from 'react';
 import { GuessForm } from '../components/molecules/GuessForm';
 import { UseCountriesContext } from '../context/CountriesApiContext';

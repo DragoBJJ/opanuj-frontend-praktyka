@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react';
-import { sortData } from '../utils/sort';
-import { CountryType } from '../types/country';
+import { sortData } from '../utils/Sort';
+import { CountryType } from '../types/Country';
 import { useFetchCountryData } from '../hooks/useFetchData';
 import { FilterOptions, ModeType, SortOptions } from '../types/filter';
 
