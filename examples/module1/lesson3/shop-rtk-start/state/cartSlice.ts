@@ -34,10 +34,39 @@ export const cartSlice = createSlice({
     clearCart: (state) => {
       state.items = [];
     },
+
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      const newCart = state.items.filter((item) => {
+        return item.id !== action.payload;
+      });
+      state.items = newCart;
+    },
+
+    decreaseAmount: (state, { payload }: PayloadAction<number>) => {
+      const itemCard = state.items.find((item) => item.id == payload);
+      if (!itemCard) return;
+
+      if (itemCard.amount <= 1) {
+        state.items = state.items.filter((item) => item.id !== payload);
+        return;
+      }
+
+      const newItems = state.items.map((item) => {
+        if (item.id == payload) {
+          return {
+            ...itemCard,
+            amount: item.amount - 1,
+          };
+        }
+        return item;
+      });
+      state.items = newItems;
+    },
   },
 });
 
-export const { addToCart, clearCart } = cartSlice.actions;
+export const { addToCart, clearCart, removeFromCart, decreaseAmount } =
+  cartSlice.actions;
 
 export const selectCartItems = (state: RootState) => state.cart.items;
 export const selectItemAmount = (state: RootState) =>
