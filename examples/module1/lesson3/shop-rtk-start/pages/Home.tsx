@@ -1,9 +1,12 @@
-import { useContext } from 'react';
 import Product from '../components/Product';
-import { ProductContext } from '../contexts/ProductContext';
+import { useGetAllProductsQuery } from '../services/product';
 
 const Home = () => {
-  const { products } = useContext(ProductContext);
+  const { data: products, isLoading, isError } = useGetAllProductsQuery();
+
+  if (!products?.length || isError) return <></>;
+
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <div>

@@ -21,7 +21,6 @@ interface SidebarProps {
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
   const dispatch = useAppDispatch();
-
   const cartItems = useAppSelector(selectCartItems);
   const itemAmount = useAppSelector(selectItemAmount);
   const totalPrice = useAppSelector(selectTotalPrice);
