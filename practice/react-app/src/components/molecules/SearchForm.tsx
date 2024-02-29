@@ -32,7 +32,7 @@ export const SearchForm = memo(() => {
         <Input
           label={
             filterOption !== 'initial'
-              ? `Please write your Country: ${filterOption}`
+              ? `Please write your: ${filterOption}`
               : 'Choose filter'
           }
           type="text"
