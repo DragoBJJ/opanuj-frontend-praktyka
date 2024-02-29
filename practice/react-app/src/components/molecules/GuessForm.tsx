@@ -30,7 +30,7 @@ export const GuessForm = () => {
 
   const message = isSuccess ? 'Congratulation' : 'Try Again';
   return (
-    <div className="flex flex-col items-center align-items justify-center border-2 ">
+    <div className="flex flex-col items-center align-items justify-center">
       <Input
         label="What is your answer ?"
         type="text"

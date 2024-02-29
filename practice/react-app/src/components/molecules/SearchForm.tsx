@@ -22,7 +22,7 @@ export const SearchForm = memo(() => {
         setOption={setSortOption}
         options={['initial', 'population', 'name']}
       />
-      <div className="mx-8 flex flex-col border-2 min-w-[250px]">
+      <div className="mx-8 flex flex-col min-w-[250px]">
         <Select<FilterOptions>
           value={filterOption}
           label="Filter by"

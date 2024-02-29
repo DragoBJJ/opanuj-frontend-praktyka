@@ -15,7 +15,7 @@ function Radio<T extends string>({
   setStateValue,
 }: RadioType<T>) {
   return (
-    <label className="flex flex-col mx-4">
+    <label className="flex flex-col mx-2">
       {label}
       <input
         className="border h-7 mt-1 indent-2"
