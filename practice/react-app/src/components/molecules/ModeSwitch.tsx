@@ -5,7 +5,7 @@ import { UseCountriesContext } from '../../context/CountriesApiContext';
 export const ModeSwitch = () => {
   const { mode, setMode } = UseCountriesContext();
   return (
-    <div className="flex ml-auto mr-32">
+    <div className="flex w-full max-w-[220px]">
       <Radio<ModeType>
         label="Search Mode"
         value="SEARCH"

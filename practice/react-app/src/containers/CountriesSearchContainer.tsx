@@ -15,7 +15,7 @@ export const CountriesSearchContainer = memo<ContainerType>(
 
     return (
       <>
-        <div className="flex flex-col mt-10 border-[1px] border-blue-500">
+        <div className="flex flex-col mt-10">
           <Title title={title} />
           <div className="flex w-full align-center justify-center min-h-[200px] pt-8">
             <SearchForm />
