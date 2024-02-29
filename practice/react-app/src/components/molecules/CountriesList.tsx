@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Country } from '../atoms/Country';
-import { CountryType } from '../../types/country';
+import { CountryType } from '../../types/Country';
 
 type CountriesListType = {
   countries: CountryType[];
