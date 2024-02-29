@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { CountryType } from '../types/country';
+import { CountryType } from '../types/Country';
 import { FilterOptions, ModeType } from '../types/filter';
 import { buildApiUrl, fetchCountryData } from '../utils/api';
 
