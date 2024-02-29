@@ -1,4 +1,4 @@
-import { CountryType } from '../types/country';
+import { CountryType } from '../types/Country';
 import { CountryApiData } from '../types/apiData';
 
 export type APIData = CountryApiData[] | { status: number; message: string };

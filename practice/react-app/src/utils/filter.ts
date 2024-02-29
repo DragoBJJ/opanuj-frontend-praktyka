@@ -1,4 +1,4 @@
-import { CountryType } from '../types/country';
+import { CountryType } from '../types/Country';
 import { FilterOptions } from '../types/filter';
 
 export const getFilteredData = (

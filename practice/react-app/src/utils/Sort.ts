@@ -1,4 +1,4 @@
-import { CountryType } from '../types/country';
+import { CountryType } from '../types/Country';
 import { SortOptions } from '../types/filter';
 
 type SortCountriesType = {
