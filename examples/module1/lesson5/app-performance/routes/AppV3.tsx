@@ -1,7 +1,7 @@
 // @ts-ignore-next-line
 import bookshelf from '../media/image-v2.png';
 import { useEffect, useReducer, useState } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Author } from '../types/Authors';
 import { Article } from '../types/Article';
 import { Comment } from '../types/Comment';
@@ -13,6 +13,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
+import { articleReducer } from '../reducers/articlesReducer';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,15 @@ function useAuthorsQuery(authorsAPI: string) {
     queryFn: async () => {
       const response = await axios.get<{ authors: Author[] }>(authorsAPI);
       return response.data.authors;
+    },
+  });
+}
+function useArticlesQuery(articleAPI: string) {
+  return useQuery({
+    queryKey: ['articles'],
+    queryFn: async () => {
+      const response = await axios.get<{ articles: Article[] }>(articleAPI);
+      return response.data.articles;
     },
   });
 }
@@ -173,21 +183,55 @@ function Authors() {
 }
 
 function Articles() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, dispatch] = useReducer(articleReducer, []);
   const { articlesAPI, authorsAPI } = useLoaderData() as Bootstrap;
 
   const { data: authors } = useAuthorsQuery(authorsAPI);
+  const { data: articlesData } = useArticlesQuery(articlesAPI);
 
   useEffect(() => {
-    axios
-      .get<{ articles: Article[] }>(articlesAPI)
-      .then(({ data: { articles } }) => {
-        setArticles(articles);
+    if (!articlesData?.length) return;
+    dispatch({
+      type: 'SET_ARTICLES',
+      payload: articlesData,
+    });
+  }, [articlesData]);
+
+  const addNewArticle = (article: Article) => {
+    try {
+      dispatch({
+        type: 'ADD_ARTICLE',
+        payload: article,
       });
-  }, []);
+      axios.post(articlesAPI, {
+        article,
+      });
+    } catch (error) {
+      const errorMsg = error as AxiosError;
+      dispatch({
+        type: 'REMOVE_ARTICLE',
+        payload: article.id,
+      });
+      throw new Error(errorMsg.message);
+    }
+  };
 
   return (
-    <>
+    <div className="mt-4">
+      <button
+        onClick={() =>
+          addNewArticle({
+            id: articles.length + 1,
+            author: 'Drago',
+            content:
+              'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been the industrys. Standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
+            title: `Lorem Title ${articles.length + 1}`,
+          })
+        }
+        className="bg-blue-400 my-2 text-white p-2 rounded-lg mt-2"
+      >
+        Add new Article
+      </button>
       <h2 className="font-bold text-xl mt-2">Articles</h2>
       {articles.length === 0 && <Placeholder lines={5} height={24} />}
       {articles.map((article) => (
@@ -206,7 +250,7 @@ function Articles() {
       {authors && (
         <p className="text-right mt-4">Created by {authors.length} authors</p>
       )}
-    </>
+    </div>
   );
 }
 
