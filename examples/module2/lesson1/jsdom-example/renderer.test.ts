@@ -25,4 +25,19 @@ describe('User renderer', () => {
     renderItems(container, users);
     expect(Array.from(container.querySelectorAll('li'))).toHaveLength(2);
   });
+
+
+  test("should return true if each li item has value", () => {
+    localStorage.setItem('userRole', 'admin');
+
+    const container = document.createElement("div");
+    renderItems(container, users)
+    
+    const listitems =  Array.from(container.querySelectorAll("li"))
+    const valuesExist = listitems.every((item)=> {
+      return item.textContent ? item.textContent.trim().length >= 1 : false;
+    });
+
+     expect(valuesExist).toBe(true);
+  },)
 });
