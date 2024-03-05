@@ -10,33 +10,26 @@ import { API_URL } from '../../../static/url';
 
 export const GuessForm = () => {
   const [answer, setAnswer] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const [showMessage, setShowMessage] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [showMessage, setShowMessage] = useState("");
 
   const { countries, setCountries } = UseCountriesContext();
 
   const checkUserAnswer = (answer: string) => {
+    if(!answer) return setShowMessage("Your input cannot be empty")  
+    
+    const [country] = countries
 
-    if(!answer){
-      setShowMessage(true);
-      return setErrorMessage("Your input cannot be empty")  
-    }
-  
-    const [country] = countries;
     const res = country.name.toLowerCase() === answer.toLowerCase();
-    setIsSuccess(res);
-    return setShowMessage(true);
+     if(!res) return setShowMessage("try Again")
+
+     return setShowMessage("Congratulations")
+     
   };
 
   const drawNewCountry = async () => {
     setAnswer('');
     setCountries(await fetchCountryData(`${API_URL}/all`, 'GUESS'));
   };
-
- 
-  const message = isSuccess ? 'Congratulation' : errorMessage ? errorMessage : "Try Again";
 
 
   return (
@@ -51,7 +44,7 @@ export const GuessForm = () => {
       <Button name="Check" onClick={() => checkUserAnswer(answer)} />
       <Button name="Draw again" onClick={async () => drawNewCountry()} />
       <Title
-        title={showMessage ? message : 'What is the name of the country ?'}
+        title={showMessage ? showMessage : 'What is the name of the country ?'}
       />
     </div>
   );

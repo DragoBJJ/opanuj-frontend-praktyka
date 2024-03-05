@@ -5,6 +5,7 @@ import {render,cleanup,screen} from '@testing-library/react' // (or /dom, /vue, 
 import { GuessForm } from './GuessForm'
 
 import {afterEach,test,expect}  from "vitest"
+import { CountriesProvider } from "../../../context/CountriesApiContext"
 
 afterEach(cleanup)
 
@@ -25,14 +26,21 @@ test("Should display controlls correct", async () => {
 
 
 test("Country input validation works correctly", async () => {
-    render(<GuessForm  />) 
+    render(<CountriesProvider>
+            <GuessForm  />
+        </CountriesProvider>) 
 
  
    const button = screen.getByText("Check")
    await userEvent.click(button)
 
    const validateText = screen.getByText("Your input cannot be empty")
+   const input = screen.getByPlaceholderText("Country")
    
    expect(validateText).toBeInTheDocument();
-    
+
+   await userEvent.type(input,"Poland")
+
+  expect(validateText).toBeInTheDocument();
+  
 })
