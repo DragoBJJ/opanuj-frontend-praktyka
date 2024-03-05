@@ -30,19 +30,23 @@ test("Country input validation works correctly", async () => {
             <GuessForm  />
         </CountriesProvider>) 
 
- 
-   const button = screen.getByText("Check")
-   await userEvent.click(button)
+  const input = screen.getByPlaceholderText("Country")  
+  const checkButton = screen.getByText("Check")
 
-   const input = screen.getByPlaceholderText("Country")
+   await userEvent.click(checkButton)
+
+   const errorMessage = screen.getByText("Your input cannot be empty") 
+   expect(errorMessage).toBeInTheDocument();
+
+
    
   expect(input).toBeInTheDocument();
 
    await userEvent.type(input, "Poland")
 
-   await userEvent.click(button)
+   await userEvent.click(checkButton)
 
    const validateText = screen.queryByText("Your input cannot be empty")
-  expect(validateText).toBeNull();
+   expect(validateText).toBeNull();
   
 })
