@@ -15,9 +15,15 @@ export const GuessForm = () => {
   const { countries, setCountries } = UseCountriesContext();
 
   const checkUserAnswer = (answer: string) => {
+
     if(!answer) return setShowMessage("Your input cannot be empty")  
     
     const [country] = countries
+
+    if(!country) {
+      setShowMessage("try Again")
+      return 
+    }
 
     const res = country.name.toLowerCase() === answer.toLowerCase();
      if(!res) return setShowMessage("try Again")

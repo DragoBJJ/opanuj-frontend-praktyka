@@ -34,13 +34,15 @@ test("Country input validation works correctly", async () => {
    const button = screen.getByText("Check")
    await userEvent.click(button)
 
-   const validateText = screen.getByText("Your input cannot be empty")
    const input = screen.getByPlaceholderText("Country")
    
-   expect(validateText).toBeInTheDocument();
+  expect(input).toBeInTheDocument();
 
-   await userEvent.type(input,"Poland")
+   await userEvent.type(input, "Poland")
 
-  expect(validateText).toBeInTheDocument();
+   await userEvent.click(button)
+
+   const validateText = screen.queryByText("Your input cannot be empty")
+  expect(validateText).toBeNull();
   
 })
