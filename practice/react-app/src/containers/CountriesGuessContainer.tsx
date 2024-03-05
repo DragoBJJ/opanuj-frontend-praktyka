@@ -1,6 +1,6 @@
 import { CountryType } from '../types/Country';
 import { memo } from 'react';
-import { GuessForm } from '../components/molecules/GuessForm';
+import { GuessForm } from '../components/molecules/GuessForm/GuessForm';
 import { UseCountriesContext } from '../context/CountriesApiContext';
 
 type ContainerType = {

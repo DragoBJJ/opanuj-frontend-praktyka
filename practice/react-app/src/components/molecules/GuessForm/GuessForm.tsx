@@ -1,26 +1,33 @@
 import { useState } from 'react';
-import { Input } from '../atoms/Input';
-import { Button } from '../atoms/Button';
-import { UseCountriesContext } from '../../context/CountriesApiContext';
-import Title from '../atoms/Title';
-import { fetchCountryData } from '../../utils/api';
-import { API_URL } from '../../static/url';
+import { Input } from '../../atoms/Input';
+import { Button } from '../../atoms/Button';
+import { UseCountriesContext } from '../../../context/CountriesApiContext';
+import Title from '../../atoms/Title';
+import { fetchCountryData } from '../../../utils/api';
+import { API_URL } from '../../../static/url';
 
 // type SearchFormType = {};
 
 export const GuessForm = () => {
   const [answer, setAnswer] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
+
   const [showMessage, setShowMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const { countries, setCountries } = UseCountriesContext();
 
   const checkUserAnswer = (answer: string) => {
+
+    if(!answer){
+      setShowMessage(true);
+      return setErrorMessage("Your input cannot be empty")  
+    }
+  
     const [country] = countries;
     const res = country.name.toLowerCase() === answer.toLowerCase();
     setIsSuccess(res);
-    setShowMessage(true);
-    return;
+    return setShowMessage(true);
   };
 
   const drawNewCountry = async () => {
@@ -28,7 +35,10 @@ export const GuessForm = () => {
     setCountries(await fetchCountryData(`${API_URL}/all`, 'GUESS'));
   };
 
-  const message = isSuccess ? 'Congratulation' : 'Try Again';
+ 
+  const message = isSuccess ? 'Congratulation' : errorMessage ? errorMessage : "Try Again";
+
+
   return (
     <div className="flex flex-col items-center align-items justify-center">
       <Input

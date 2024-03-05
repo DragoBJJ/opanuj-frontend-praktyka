@@ -1,8 +1,8 @@
 import { memo } from 'react';
-import { FilterOptions, SortOptions } from '../../types/filter';
-import { Input } from '../atoms/Input';
-import { Select } from '../atoms/Select';
-import { UseCountriesContext } from '../../context/CountriesApiContext';
+import { FilterOptions, SortOptions } from '../../../types/filter';
+import { Input } from '../../atoms/Input';
+import { Select } from '../../atoms/Select';
+import { UseCountriesContext } from '../../../context/CountriesApiContext';
 
 export const SearchForm = memo(() => {
   const {

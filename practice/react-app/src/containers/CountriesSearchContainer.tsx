@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import Title from '../components/atoms/Title';
-import { SearchForm } from '../components/molecules/SearchForm';
+import { SearchForm } from '../components/molecules/SearchForm/SearchForm';
 import { CountryType } from '../types/Country';
 import { UseCountriesContext } from '../context/CountriesApiContext';
 
