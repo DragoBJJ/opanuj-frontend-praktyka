@@ -14,6 +14,8 @@ export const SearchForm = memo(() => {
     setFilter,
   } = UseCountriesContext();
 
+
+
   return (
     <form className="flex items-center justify-center">
       <Select<SortOptions>
@@ -24,21 +26,18 @@ export const SearchForm = memo(() => {
       />
       <div className="mx-8 flex flex-col min-w-[250px]">
         <Select<FilterOptions>
-          value={filterOption}
+          value={ filterOption ? filterOption : "name"}
           label="Filter by"
           setOption={setFilterOption}
-          options={['capital', 'name', 'currency', 'lang', 'initial']}
+          options={['capital', 'name', 'currency', 'lang']}
         />
+
         <Input
-          label={
-            filterOption !== 'initial'
-              ? `Please write your Country: ${filterOption}`
-              : 'Choose filter'
-          }
+          label={`Please write your Country: ${filterOption}`}
           type="text"
           placeholder="Country"
-          name={filter}
-          setName={setFilter}
+          value={filter}
+          setValue={setFilter}
         />
       </div>
     </form>

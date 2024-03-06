@@ -3,7 +3,6 @@ export type FilterOptions =
   | 'currency'
   | 'capital'
   | 'lang'
-  | 'initial';
 
 export type SortOptions = 'population' | 'name' | 'initial';
 

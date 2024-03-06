@@ -21,7 +21,7 @@ const defaultValues: CountriesContextValues = {
   mode: 'SEARCH',
   countries: [],
   filter: '',
-  filterOption: 'initial',
+  filterOption: 'name',
   sortOption: 'initial',
   setCountries: () => {},
   setSortOption: () => {},
@@ -41,7 +41,7 @@ export const CountriesProvider = ({
   const [filter, setFilter] = useState('');
 
   const [sortOption, setSortOption] = useState<SortOptions>('initial');
-  const [filterOption, setFilterOption] = useState<FilterOptions>('initial');
+  const [filterOption, setFilterOption] = useState<FilterOptions>('name');
 
   const { countries, setCountries } = useFetchCountryData({
     filterOption,
@@ -49,7 +49,7 @@ export const CountriesProvider = ({
     mode,
   });
 
-  const value = {
+  const values = {
     mode,
     setMode,
     filter,
@@ -63,7 +63,7 @@ export const CountriesProvider = ({
   };
 
   return (
-    <CountriesContext.Provider value={value}>
+    <CountriesContext.Provider value={values}>
       {children}
     </CountriesContext.Provider>
   );
