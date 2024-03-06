@@ -41,8 +41,8 @@ export const GuessForm = () => {
         label="What is your answer ?"
         type="text"
         placeholder="Country"
-        name={answer}
-        setName={setAnswer}
+        value={answer}
+        setValue={setAnswer}
       />
       <Button name="Check" onClick={() => checkUserAnswer(answer)} />
       <Button name="Draw again" onClick={async () => drawNewCountry()} />

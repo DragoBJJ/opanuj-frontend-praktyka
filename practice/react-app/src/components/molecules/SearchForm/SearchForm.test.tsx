@@ -43,7 +43,6 @@ describe("Testing Context Consumer", () => {
   test("Should input has correct country value", async () => {
     customRender(<SearchForm />, {providerProps});
   
-  
     const input = screen.getByLabelText("Please write your Country: name")
     expect(input).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Country")).toHaveValue("Poland");
