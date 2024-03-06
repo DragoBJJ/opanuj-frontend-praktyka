@@ -2,7 +2,7 @@ import { CountryType } from '../types/Country';
 
 import { CountriesSearchContainer } from './CountriesSearchContainer';
 import { CountriesList } from '../components/molecules/CountriesList';
-import { CountriesGuessContainer } from './CountriesGuessContainer';
+import { CountriesGuessContainer } from './GuessContainer/CountriesGuessContainer';
 import { Country } from '../components/atoms/Country';
 import { UseCountriesContext } from '../context/CountriesApiContext';
 

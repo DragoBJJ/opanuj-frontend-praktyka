@@ -5,7 +5,8 @@ import {render,cleanup,screen} from '@testing-library/react' // (or /dom, /vue, 
 import { GuessForm } from './GuessForm'
 
 import {afterEach,test,expect}  from "vitest"
-import { CountriesProvider } from "../../../context/CountriesApiContext"
+import { customRender } from "../../../tests/context"
+import { providerProps } from "../../../tests/testData"
 
 afterEach(cleanup)
 
@@ -24,29 +25,27 @@ test("Should display controlls correct", async () => {
     
 })
 
-
 test("Country input validation works correctly", async () => {
-    render(<CountriesProvider>
-            <GuessForm  />
-        </CountriesProvider>) 
+
+  customRender(<GuessForm/>, {providerProps});
 
   const input = screen.getByPlaceholderText("Country")  
   const checkButton = screen.getByText("Check")
+  let errorMsgTitle: HTMLElement | null;
 
    await userEvent.click(checkButton)
 
-   const errorMessage = screen.getByText("Your input cannot be empty") 
-   expect(errorMessage).toBeInTheDocument();
-
-
+   errorMsgTitle = screen.getByText("Your input cannot be empty") 
    
-  expect(input).toBeInTheDocument();
+   
+   expect(errorMsgTitle).toBeInTheDocument();
+   expect(input).toBeInTheDocument();
 
    await userEvent.type(input, "Poland")
-
    await userEvent.click(checkButton)
 
-   const validateText = screen.queryByText("Your input cannot be empty")
-   expect(validateText).toBeNull();
+   errorMsgTitle = screen.queryByText("Your input cannot be empty")
+
+   expect(errorMsgTitle).toBeNull();
   
 })

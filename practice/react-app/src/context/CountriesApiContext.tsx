@@ -4,7 +4,7 @@ import { CountryType } from '../types/Country';
 import { useFetchCountryData } from '../hooks/useFetchData';
 import { FilterOptions, ModeType, SortOptions } from '../types/filter';
 
-interface CountriesContextValues {
+export interface CountriesContextValues {
   mode: ModeType;
   setMode: React.Dispatch<React.SetStateAction<ModeType>>;
   countries: CountryType[];
@@ -30,7 +30,7 @@ const defaultValues: CountriesContextValues = {
   setFilter: () => {},
 };
 
-const CountriesContext = createContext<CountriesContextValues>(defaultValues);
+export const CountriesContext = createContext<CountriesContextValues>(defaultValues);
 
 export const CountriesProvider = ({
   children,

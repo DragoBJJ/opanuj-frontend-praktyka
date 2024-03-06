@@ -7,12 +7,12 @@ export type CountryType = {
 };
 
 export const Country = memo<CountryType>(
-  ({ name, flagData: { flag, alt } }) => {
+  ({ name, flagData: { flag, alt = "country" } }) => {
     return (
-      <li className="flex flex-col items-center">
+      <div className="flex flex-col items-center">
         {name && <h3>{name}</h3>}
         <img src={flag} alt={alt} />
-      </li>
+      </div>
     );
   }
 );
