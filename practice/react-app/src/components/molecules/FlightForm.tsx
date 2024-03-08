@@ -65,7 +65,11 @@ export const FlightForm = memo(() => {
      
          <Button name="Search" type="submit"/>            
       </form>
-        <ul className="mt-4 text-red-500" id="errors"></ul>
+        <ul className="mt-4 text-red-500" id="errors min-h-[48px] border-2">
+            {errors.length > 0 && errors.map((errMessage)=> {
+                return <p key={errMessage}>{errMessage}</p>
+            })}
+        </ul>
 </div>
     );
   });

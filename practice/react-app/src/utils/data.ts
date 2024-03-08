@@ -4,16 +4,17 @@ import { CountryApiData } from '../types/apiData';
 export type APIData = CountryApiData[] | { status: number; message: string };
 
 const mapCountryApiData = (country: CountryApiData) => {
+  const {name,flags,currencies,languages,capital,population} = country
   return {
-    name: country.name.common,
+    name: name.common,
     flagsData: {
-      flag: country.flags.svg ? country.flags.svg : country.flags.png,
-      alt: country.flags.alt,
+      flag: flags.svg ? flags.svg : flags.png,
+      alt: flags.alt,
     },
-    currencies: country.currencies,
-    languanges: country.languages,
-    capital: country.capital,
-    population: country.population,
+    currencies,
+    languages,
+    capital,
+    population,
   };
 };
 

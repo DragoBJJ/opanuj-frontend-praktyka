@@ -3,8 +3,6 @@ import { FormInputType } from "../types/validate";
 import { ZodError, ZodSchema } from "zod";
 
 
-
-
 export const useForm =<T> (schema: ZodSchema, initialState: T) => {
 
     const [formData, setFormData] = useState(initialState);

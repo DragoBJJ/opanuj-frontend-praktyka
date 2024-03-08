@@ -10,7 +10,7 @@ const DATE_REGEX = /^\d{2}-\d{2}-\d{4}$/;
     origin:  z.string().min(1, {message: `Origin ${MIN}`}).max(20, {
         message: `Origin ${MAX}`
     }),
-    destination: z.string().min(1, {message: MIN}).max(20,{message: MAX}),
+    destination: z.string().min(1, {message: `Destination ${MIN}`}).max(20,{message: `Destination ${MAX}`}),
     startDate: z.string().refine((date)=> {
         return DATE_REGEX.test(date);
     },{message: `Start Date ${DATE}`}),

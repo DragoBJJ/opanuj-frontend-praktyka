@@ -26,8 +26,12 @@ export const useFetchCountryData = ({
     if (mode === 'SEARCH' && filter.length <= 2) {
       return setCountries([]);
     }
+  }, [mode, filter.length]);
+
+
+  useEffect(()=> {
     getCountryData();
-  }, [API, mode, filter.length, getCountryData]);
+  },[getCountryData])
 
   return { countries, setCountries };
 };

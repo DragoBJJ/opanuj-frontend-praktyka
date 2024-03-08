@@ -7,7 +7,7 @@ export type CountryType = {
   name: string;
   flagsData: FlagData;
   currencies: Currencies;
-  languanges: Languanges;
+  languages: Languanges;
   capital: string[];
   population: number;
 };
