@@ -1,21 +1,25 @@
 import test, { expect } from '@playwright/test';
-import { STORAGE_STATE } from '../../../../playwright.config';
-import { LoginPage } from '../pages/login.page';
-import { MainPage } from '../pages/main.page';
-import { URLs } from '../utils/constants';
 
-test('login into wiki account', async ({ page }) => {
-  const mainPage = new MainPage(page);
-  await mainPage.navigate();
-  await mainPage.goToLoginPage();
 
-  const loginPage = new LoginPage(page);
-  await loginPage.fillLoginForm(process.env.USERNAME!, process.env.PASSWORD!);
 
-  await expect(page).toHaveURL(URLs.MAIN_PAGE);
-  await expect(mainPage.getNavigation()).toContainText(process.env.USERNAME!, {
-    ignoreCase: true,
-  });
+test("login into Wiki", async({page}) => {
 
-  await page.context().storageState({ path: STORAGE_STATE });
-});
+await page.goto("/")
+
+const MainPageNavigation = page.getByRole('navigation', { name: 'Personal tools' });
+
+ await MainPageNavigation.getByRole("link", {name: "Log In"}).click();
+
+await page.waitForURL(/.*Special:UserLogin.*/);
+
+const LoginForm = page.locator('#userloginForm');
+
+ await LoginForm.getByLabel("Username").fill(process.env.USERNAME!)
+ await LoginForm.getByLabel("Password").fill(process.env.PASSWORD!)
+
+await LoginForm.getByRole("button",{name: "Log In"}).click();
+
+
+await expect(page).toHaveURL("/wiki/Main_Page");
+await expect(MainPageNavigation).toContainText(process.env.USERNAME!,{ignoreCase: true});
+})
