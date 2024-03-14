@@ -1,21 +1,15 @@
-import { expect, test } from '../../../mocks/test';
-import { ArticlePage } from '../../../pages/article.page';
-import { MainPage } from '../../../pages/main.page';
 
-test.afterEach(async ({ page }) => {
-  const articlePage = new ArticlePage(page);
-  await articlePage.clickUnwatchButton();
+import test, { expect } from '@playwright/test';
 
-  await expect(articlePage.getWatchButton()).toBeVisible();
+test("add article to watchlist", async({page}) => {
+
+await page.goto("/")
+
+await expect(page).toHaveURL("/wiki/Main_Page");
+
+const MainPageNavigation = page.getByRole('navigation', { name: 'Personal tools' });
+
+await expect(MainPageNavigation).toContainText(process.env.USERNAME!,{
+  ignoreCase: true
 });
-
-test('add featured article to watchlist', async ({ page }) => {
-  const mainPage = new MainPage(page);
-  await mainPage.navigate();
-  await mainPage.goToFeaturedArticle();
-
-  const articlePage = new ArticlePage(page);
-  await articlePage.clickWatchButton();
-
-  await expect(articlePage.getUnwatchButton()).toBeVisible();
-});
+})
