@@ -1,4 +1,4 @@
-import { expect, test } from '../../../fixtures';
+import { expect,test } from '../../../fixtures';
 import { ArticlePage } from '../../../pages/article.page';
 import { MainPage } from '../../../pages/main.page';
 
@@ -19,3 +19,4 @@ test('add featured article to watchlist', async ({ page }) => {
 
   await expect(articlePage.getTopbarUnwatchButton()).toBeVisible();
 });
+

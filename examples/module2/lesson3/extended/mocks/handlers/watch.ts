@@ -12,6 +12,8 @@ export const watchHandlers = [
     const watchedState =
       formData.get('unwatch') === '1' ? { unwatched: true } : { watched: true };
 
+
+      console.log("Inside Hanlder", watchedState);
     return HttpResponse.json({
       batchcomplete: true,
       watch: [{ title: formData.get('titles'), ns: 0, ...watchedState }],
