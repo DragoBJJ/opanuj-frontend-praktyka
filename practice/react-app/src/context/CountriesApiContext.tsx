@@ -18,7 +18,7 @@ interface CountriesContextValues {
 }
 
 const defaultValues: CountriesContextValues = {
-  mode: 'SEARCH',
+  mode: "SEARCH",
   countries: [],
   filter: '',
   filterOption: 'initial',
