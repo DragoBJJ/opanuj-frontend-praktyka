@@ -3,7 +3,7 @@ import { CountryType } from '../types/Country';
 import { CountriesSearchContainer } from './CountriesSearchContainer';
 import { CountriesList } from '../components/molecules/CountriesList';
 import { CountriesGuessContainer } from './CountriesGuessContainer';
-import { Country } from '../components/atoms/Country';
+import { Country } from '../components/atoms/CountryCard';
 import { UseCountriesContext } from '../context/CountriesApiContext';
 
 export const FactoryContainer = () => {

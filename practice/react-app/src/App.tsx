@@ -1,15 +1,14 @@
 import './App.css';
-import { FactoryContainer } from './containers/FactoryContainer';
-import { ModeSwitch } from './components/molecules/ModeSwitch';
-import { CountriesProvider } from './context/CountriesApiContext';
+import { SimpleForm } from './components/molecules/SimpleForm';
 
 function App() {
   return (
     <div>
-      <CountriesProvider>
+      {/* <CountriesProvider>
         <ModeSwitch />
         <FactoryContainer />
-      </CountriesProvider>
+      </CountriesProvider> */}
+      <SimpleForm/>
     </div>
   );
 }

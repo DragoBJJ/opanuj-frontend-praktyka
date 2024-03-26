@@ -13,5 +13,5 @@ export type SortDataType<T> = {
 };
 
 export type ModeType = 'SEARCH' | 'GUESS';
-export type SwitchType = 'SEARCH' | 'GUESS';
+export type SimpleType = 'ACCEPT' | 'REJECT';
 

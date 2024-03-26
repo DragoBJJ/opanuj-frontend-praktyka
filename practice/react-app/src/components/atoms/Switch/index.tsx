@@ -6,9 +6,8 @@ type SwitchType<T extends string> = {
   label: string;
   values: T[];
   stateValue: T;
-  setStateValue: Dispatch<SetStateAction<T>>;
+  setStateValue: Dispatch<SetStateAction<string>>;
 };
-
 
  function Switch<T extends string>({
   values,
@@ -17,12 +16,12 @@ type SwitchType<T extends string> = {
   setStateValue,
 }: SwitchType<T>) {
     const switchDynamicStyle = `bg-green-600 translate-x-[25px] border-green`;
-    const isSearch = stateValue === "SEARCH";
+    const isSearch = stateValue === values[1];
 
     const handleKeyDown =(e: KeyboardType) => {
         if(keyOptions[e.code])  {
           const handleValue = isSearch ? values[0]: values[1];
-          setStateValue(handleValue);
+            setStateValue(handleValue);
         }
     }
 
@@ -33,7 +32,7 @@ type SwitchType<T extends string> = {
     <span className={`absolute inline-block top-[2px] left-[2px] easy-in-out duration-300 rounded-lg h-[12px] w-[12px] ${isSearch ? switchDynamicStyle: "border-[2px] border-solid border-black bg-black"}`}></span>
   </span>
 <div className='flex w-20' aria-hidden="true">
-<span onClick={()=> setStateValue(values[0])}  className={`cursor-pointer ${isSearch ? "inline": "hidden"}`} aria-hidden="true">{values[0]}</span>
+  <span onClick={()=> setStateValue(values[0])} className={`cursor-pointer ${isSearch ? "inline": "hidden"}`} aria-hidden="true">{values[0]}</span>
   <span onClick={()=> setStateValue(values[1])} className={`cursor-pointer ${isSearch ? "hidden": "inline"}`} aria-hidden="true">{values[1]}</span>
 </div>
 </div>
