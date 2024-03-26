@@ -7,8 +7,6 @@ export const useForm =<T extends {acceptTerms: string}> (schema: ZodSchema, init
     const [formData, setFormData] = useState(initialState);
     const [errors, setErrors] = useState<string[]>([]);
 
-    console.log("formData",formData)
-
     const setFormDataByKey  = (e: ChangeEvent<HTMLInputElement>) => {
         const {value, name} = e.target
        return setFormData((prev)=> {

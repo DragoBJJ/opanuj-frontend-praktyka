@@ -26,6 +26,7 @@ export const SimpleForm = () => {
             <Input type="email" label="Email" placeholder="drago@gmail.com"  name="email" setValue={setFormDataByKey}/>
             <Switch<SimpleType> label="Accept Terms" stateValue={formData.acceptTerms} setStateValue={setAcceptTermsData} values={["REJECT", "ACCEPT"]}/>
             <Button type="submit" name="Submit" />
+            {errors.length  ? errors.map((error)=>  <p className="text-red-500 mt-4">{error}</p>): <></>}
         </form>
     )
 }
