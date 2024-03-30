@@ -3,6 +3,8 @@
   import WeatherIcon from './WeatherIcon.svelte';
 
   export let dailyWeather: DailyWeather;
+
+  console.log('Ass', dailyWeather);
 </script>
 
 <div class="bg-white rounded-xl p-4 shadow-lg">
@@ -10,5 +12,7 @@
     <WeatherIcon type={dailyWeather.type} />
     <span>{dailyWeather.date}</span>
   </h2>
-  <p class="text-xl font-bold mt-4">{dailyWeather.averageTemperature} *(C)</p>
+  <p class="text-xl font-bold mt-4">
+    {dailyWeather.averageTemperature} *(C)
+  </p>
 </div>

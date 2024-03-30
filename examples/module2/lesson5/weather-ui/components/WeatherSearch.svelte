@@ -4,16 +4,19 @@
   import WeatherPreview from './WeatherPreview.svelte';
 
   let weather: LocationWeather;
+  let error: boolean;
 
   async function onLocationChange(event: KeyboardEvent) {
     const locationQuery = (event.target as HTMLInputElement).value;
     try {
       const result = await fetchWeather(locationQuery);
+      error = false;
       if (result) {
         weather = result;
       }
     } catch {
       console.error(`Failed to fetch weather for ${locationQuery}`);
+      error = true;
     }
   }
 </script>
@@ -39,8 +42,11 @@
     />
   </div>
   <div>
-    {#if weather}
+    {#if weather && !error}
       <WeatherPreview {weather} />
+    {/if}
+    {#if error}
+      <p class="text-red-500">Location not found. Please try again.</p>
     {/if}
   </div>
 </main>
