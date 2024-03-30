@@ -3,8 +3,6 @@
   import WeatherIcon from './WeatherIcon.svelte';
 
   export let dailyWeather: DailyWeather;
-
-  console.log('Ass', dailyWeather);
 </script>
 
 <div class="bg-white rounded-xl p-4 shadow-lg">
