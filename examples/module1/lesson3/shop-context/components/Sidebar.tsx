@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ interface SidebarProps {
   setIsSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
+const Sidebar = memo<SidebarProps>(({ isSidebarOpen, setIsSidebarOpen }) => {
   const { cart, clearCart, itemAmount, total } = useContext(CartContext);
 
   return (
@@ -59,6 +59,6 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }: SidebarProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default Sidebar;

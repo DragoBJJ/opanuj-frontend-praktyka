@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { memo, useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { BsEyeFill, BsPlus } from 'react-icons/bs';
@@ -6,7 +6,7 @@ import { BsEyeFill, BsPlus } from 'react-icons/bs';
 import { CartContext } from '../contexts/CartContext';
 import { Product as ProductType } from '../types/Product';
 
-const Product = ({ product }: { product: ProductType }) => {
+const Product = memo<{ product: ProductType }>(({ product }) => {
   const { addToCart } = useContext(CartContext);
 
   const { id, image, category, title, price } = product;
@@ -46,6 +46,6 @@ const Product = ({ product }: { product: ProductType }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Product;
